@@ -1,20 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
+import react from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Router, Scene } from 'react-native-router-flux'
+
+import Home from './Home';
+import Camera from './Camera';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Router>
+      
+    <Scene key = "root" >
+       <Scene key = "home" title = "MangoMeter" component = {Home} initial = {true} />
+       <Scene key = "camera" component = {Camera} title = "Camera" />
+    </Scene>
+ </Router>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: '#FF8242',
+    // alignItems: 'center',
     justifyContent: 'center',
   },
 });
