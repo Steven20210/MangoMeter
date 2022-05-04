@@ -5,6 +5,7 @@ import { Router, Scene } from 'react-native-router-flux'
 
 import Home from './Home';
 import Camera from './Camera';
+import Save from './Save';
 
 export default function App() {
   return (
@@ -13,6 +14,8 @@ export default function App() {
     <Scene key = "root" >
        <Scene key = "home" title = "MangoMeter" component = {Home} initial = {true} />
        <Scene key = "camera" component = {Camera} title = "Camera" />
+       <Scene key = "save" component = {Save} title = "Save" />
+
     </Scene>
  </Router>
   );
