@@ -26,11 +26,11 @@ export default () => {
 
     const takePicture = async () => { 
       if (!camera) return; 
-      let photo = await camera.current.takePictureAsync();
+      let photo = await camera.current.takePictureAsync({base64: true});
       setCapturedImage(photo.uri);
 
       // Actions.save(photo.uri)\
-      Actions.save(photo.uri)
+      Actions.save(photo.base64)
    };
 
 

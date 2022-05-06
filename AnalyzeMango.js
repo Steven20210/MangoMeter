@@ -1,41 +1,42 @@
-const {PythonShell} = require('python-shell')
-import { getFirestore, collection, getDocs, setDoc, doc, addDoc } from 'firebase/firestore/lite';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage'
+let condition = ""
+
+const AnalyzeMango = async () => {
+
+    let mangoUrl = ""
+    // Fetch data from storage
+    const storage = getStorage();
+    const storageRef = ref(storage, 'gs://mangometer-2e7ef.appspot.com/mango')
+    getDownloadURL(storageRef)
+    .then((url) => {
+    // This can be downloaded directly:
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = (event) => {
+        const blob = xhr.response;
+        };
+        xhr.open('GET', url);
+        xhr.send();
+
+        mangoUrl = url
+    })
 
 
-const analyzeMango = async (doc_name, db ) => {
-
-    // Fetch data from Firebase
-    const cityRef = db.collection('Mango Pictures').doc(doc_name);
-    const doc = await cityRef.get();
-    if (!doc.exists) {
-    console.log('No such document!');
-    } else {
-    console.log('Document data:', doc.data());
-    }
 
     // Run the python script to predict the state of the mango
-
-    let options = {
-        mode: 'text',
-        pythonOptions: ['-u'], // get print results in real-time
-          scriptPath: 'C:/Users/Steven/Documents/GitHub/RainChecker/xhacks_website/src/expressBackend/express-api/src/email_users', //If you are having python_test.py script in same folder, then it's optional.
-        args: [item, new_price, email] //An argument which can be accessed in the python file using sys.argv[1]
-    };
+    // const spawn = require("child_process").spawn;
+    // const pythonProcess = spawn('python', ["C/Users/Steven/Documents/mangoBackend", mangoUrl])
     
+    // pythonProcess.stdout.on('data', (data) => {
+    //     condition = data.toString()
+    // });
     
-    PythonShell.run('emailer.py', options, function (err, result){
-          if (err) throw err;
-          // result is an array consisting of messages collected
-          //during execution of script.
-        //   console.log('price: ', result.toString());  
-        //   price = result.toString()   
-        console.log('success') 
 
-          
-    });
 
 
 
 }
-
-export default analyzeMango
+module.exports = {
+    AnalyzeMango,
+    condition
+}

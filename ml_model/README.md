@@ -1,2 +1,0 @@
-# MangoMeter
-In production..
