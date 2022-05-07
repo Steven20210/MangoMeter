@@ -1,4 +1,6 @@
 import { getStorage, ref, getDownloadURL } from 'firebase/storage'
+import {View, TextInput, Image, Text} from 'react-native'
+
 let condition = ""
 
 const AnalyzeMango = async () => {
@@ -18,22 +20,27 @@ const AnalyzeMango = async () => {
         xhr.open('GET', url);
         xhr.send();
 
+        console.log(url)
         mangoUrl = url
     })
-
-
-
-    // Run the python script to predict the state of the mango
-    // const spawn = require("child_process").spawn;
-    // const pythonProcess = spawn('python', ["C/Users/Steven/Documents/mangoBackend", mangoUrl])
     
-    // pythonProcess.stdout.on('data', (data) => {
-    //     condition = data.toString()
-    // });
+    const prediction = await fetch('http://e6e3-50-65-185-217.ngrok.io', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            image: mangoUrl,
+        })
+        }).then
+        ((response) => response.json()).then((json) => {
+            return json.prediction
+        });
     
+    condition = prediction
 
-
-
+    
 
 }
 module.exports = {
