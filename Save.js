@@ -11,6 +11,7 @@ import {FileSystem} from 'expo-file-system';
 import firebase from 'firebase/compat/app'
 import { PinchGestureHandler } from 'react-native-gesture-handler';
 
+// put config info here
 
 const app = initializeApp(firebaseConfig);
 const locationName = "mango"
