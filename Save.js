@@ -11,17 +11,6 @@ import {FileSystem} from 'expo-file-system';
 import firebase from 'firebase/compat/app'
 import { PinchGestureHandler } from 'react-native-gesture-handler';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBcYyXfjKk6qv0sH7TIoUrn6YDKdymzgz4",
-  authDomain: "mangometer-2e7ef.firebaseapp.com",
-  projectId: "mangometer-2e7ef",
-  storageBucket: "mangometer-2e7ef.appspot.com",
-  messagingSenderId: "518051065867",
-  appId: "1:518051065867:web:5199adf00a301ae9ecd70e",
-  measurementId: "G-FV5MLLLQHX"
-};
 
 const app = initializeApp(firebaseConfig);
 const locationName = "mango"
